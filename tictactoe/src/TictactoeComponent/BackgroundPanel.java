@@ -23,10 +23,10 @@ public class BackgroundPanel extends JPanel {
     private final int FAIL_HEIGHT = 100;
 
     private Image background;
-    private Image man_piece;
-    private Image ai_piece;
-    private Image game_win;
-    private Image game_fail;
+    private Image manPiece;
+    private Image aiPiece;
+    private Image gameWin;
+    private Image gameFail;
 
     Board board;
     boolean manToMove = true;
@@ -43,10 +43,10 @@ public class BackgroundPanel extends JPanel {
         // get image sources
         try {
             background = ImageIO.read(new File("board.png"));
-            man_piece = ImageIO.read(new File("piece_man.png"));
-            ai_piece = ImageIO.read(new File("piece_ai.png"));
-            game_win = ImageIO.read(new File("game_win.png"));
-            game_fail = ImageIO.read(new File("game_over.png"));
+            manPiece = ImageIO.read(new File("piece_man.png"));
+            aiPiece = ImageIO.read(new File("piece_ai.png"));
+            gameWin = ImageIO.read(new File("game_win.png"));
+            gameFail = ImageIO.read(new File("game_over.png"));
         } catch (IOException e) {
             System.out.println("load image fail in background");
         }
@@ -68,9 +68,9 @@ public class BackgroundPanel extends JPanel {
                 int draw_choice = record[i][j];
 
                 if (draw_choice == Board.AI)
-                    g.drawImage(ai_piece,  ADD_WIDTH + j * DISTANCE, ADD_HEIGHT + i * DISTANCE, this);
+                    g.drawImage(aiPiece,  ADD_WIDTH + j * DISTANCE, ADD_HEIGHT + i * DISTANCE, this);
                 else if (draw_choice == Board.MAN)
-                    g.drawImage(man_piece, ADD_WIDTH + j * DISTANCE, ADD_HEIGHT + i * DISTANCE, this);
+                    g.drawImage(manPiece, ADD_WIDTH + j * DISTANCE, ADD_HEIGHT + i * DISTANCE, this);
             }
         }
 
@@ -108,11 +108,10 @@ public class BackgroundPanel extends JPanel {
 
     public void PaintWinPicture(Graphics g)
     {
-        g.drawImage(game_win, WIN_WIDTH, WIN_HEIGHT, this);
+        g.drawImage(gameWin, WIN_WIDTH, WIN_HEIGHT, this);
     }
-
     public void PaintFailPicture(Graphics g)
     {
-        g.drawImage(game_fail, FAIL_WIDTH, FAIL_HEIGHT, this);
+        g.drawImage(gameFail, FAIL_WIDTH, FAIL_HEIGHT, this);
     }
 }

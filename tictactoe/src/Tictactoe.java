@@ -12,15 +12,12 @@ public class Tictactoe {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                JFrame game_frame = new TictactoeFrame();
+                JFrame gameFrame = new TictactoeFrame();
 
-                //JFrame frame = new JFrame();
-
-                //frame.add(new PiecesPanel());
-                //frame.setVisible(true);
-                game_frame.setTitle("Tic-tac-toe");
-                game_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                game_frame.setVisible(true);
+                gameFrame.setTitle("Tic-tac-toe");
+                gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                gameFrame.setIconImage(new ImageIcon("icon.png").getImage());
+                gameFrame.setVisible(true);
             }
         });
     }
