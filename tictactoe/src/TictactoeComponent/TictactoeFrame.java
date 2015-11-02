@@ -3,7 +3,8 @@ package tictactoecomponent;
 import javax.swing.JFrame;
 
 /**
- * the Frame of game
+ * the Frame of game which will be used for show
+ * the pictures of game
  */
 public class TictactoeFrame extends JFrame {
   private final int DEFAULT_WIDTH  = 615;
