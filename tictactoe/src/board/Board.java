@@ -129,14 +129,15 @@ public class Board {
    * eval the grade of the board
    * @return the grade of the board
    */
-  private int Eval() {
+  private int Eval(int move) {
     int value = 0;
-    int[][] tmpRecord = new int[3][3];
+    //int[][] tmpRecord = new int[3][3];
 
     // dose someone win?
     //if (IsWin(AI))  return Integer.MIN_VALUE - 10;
     //if (IsWin(MAN)) return Integer.MIN_VALUE + 10;
 
+    /*
     for (int i = 0; i < 3; ++ i)
       for (int j = 0; j < 3; ++ j) {
         if (record[i][j] == NONE)
@@ -150,6 +151,8 @@ public class Board {
       value += ((tmpRecord[0][j] + tmpRecord[1][j] + tmpRecord[2][j]) / 3 == AI) ? 1 : 0;
     value += ((tmpRecord[0][0] + tmpRecord[1][1] + tmpRecord[2][2]) / 3 == AI) ? 1 : 0;
     value += ((tmpRecord[2][0] + tmpRecord[1][1] + tmpRecord[0][2]) / 3 == AI) ? 1 : 0;
+
+    */
 
     // if there is a AI in the middle of two MAN, + 5
       /*
@@ -168,6 +171,7 @@ public class Board {
           value += 3;
       */
 
+    /*
     // other side
     for (int i = 0; i < 3; ++ i)
       for (int j = 0; j < 3; ++ j) {
@@ -198,6 +202,130 @@ public class Board {
       value += -3;
 
     return value;
+    */
+
+    /*int[] tmpRecord = new int[3];
+
+    for (int i = 0; i < 3; ++ i) {
+      for (int j = 0; j < 3; ++ j) {
+        tmpRecord[i] += record[i][j];
+      }
+    }
+
+    for (int i = 0; i < 3; ++ i) {
+      value += (tmpRecord[i] / 3) * 100;
+    }
+
+    for (int j = 0; j < 0)*/
+    //return evaluate();
+
+    int score = 0;
+    for (int i = 0; i < 3; ++i) {
+      int countAI = 0;
+      int countMAN = 0;
+      for (int j = 0; j < 3; ++j) {
+        if (record[i][j] == AI)
+          countAI++;
+        if (record[i][j] == MAN)
+          countMAN++;
+      }
+      score += Math.pow(10, countAI);
+      score -= Math.pow(10, countMAN);
+
+
+      if (countAI == 1 && countMAN == 2) {
+        score += Math.pow(10, 4);
+      }
+
+      int advantage = 1;
+      if (countAI == 0) {
+        if (move == AI)
+          advantage = 3;
+        score += (int) Math.pow(10, countAI) * advantage;
+      } else if (countMAN == 0) {
+        if (move == MAN)
+          advantage = 3;
+        score -= (int) Math.pow(10, countMAN) * advantage;
+      }
+    }
+
+    for (int j = 0; j < 3; ++j) {
+      int countAI = 0;
+      int countMAN = 0;
+      for (int i = 0; i < 3; ++i) {
+        if (record[i][j] == AI)
+          countAI++;
+        if (record[i][j] == MAN)
+          countMAN++;
+      }
+      score += Math.pow(10, countAI);
+      score -= Math.pow(10, countMAN);
+
+      if (countAI == 1 && countMAN == 2) {
+        score += Math.pow(10, 4);
+      }
+
+      int advantage = 1;
+      if (countAI == 0) {
+        if (move == AI)
+          advantage = 3;
+        score += (int) Math.pow(10, countAI) * advantage;
+      } else if (countMAN == 0) {
+        if (move == MAN)
+          advantage = 3;
+        score -= (int) Math.pow(10, countMAN) * advantage;
+      }
+    }
+
+    int countAI = 0;
+    int countMAN = 0;
+    for (int i = 0; i < 3; ++ i) {
+      if (record[i][i] == AI)
+        countAI++;
+      if (record[i][i] == MAN)
+        countMAN++;
+    }
+    score += Math.pow(10, countAI);
+    score -= Math.pow(10, countMAN);
+    if (countAI == 1 && countMAN == 2) {
+      score += Math.pow(10, 3);
+    }
+
+    int advantage = 1;
+    if (countAI == 0) {
+      if (move == AI)
+        advantage = 3;
+      score += (int)Math.pow(10, countAI) * advantage;
+    } else if (countMAN == 0) {
+      if (move == MAN)
+        advantage = 3;
+      score -= (int)Math.pow(10, countMAN) * advantage;
+    }
+
+    for (int i = 0; i < 3; ++ i) {
+      if (record[i][2 - i] == AI)
+        countAI++;
+      if (record[i][2-i] == MAN)
+        countMAN++;
+    }
+    score += Math.pow(10, countAI);
+    score -= Math.pow(10, countMAN);
+    if (countAI == 1 && countMAN == 2) {
+      score += Math.pow(10, 3);
+    }
+
+    advantage = 1;
+    if (countAI == 0) {
+      if (move == AI)
+        advantage = 3;
+      score += (int)Math.pow(10, countAI) * advantage;
+    } else if (countMAN == 0) {
+      if (move == MAN)
+        advantage = 3;
+      score -= (int)Math.pow(10, countMAN) * advantage;
+    }
+
+    return score;
   }
 
   /**
@@ -211,13 +339,13 @@ public class Board {
     AtomicInteger noCare = new AtomicInteger(0);
 
     if (deep == 0)
-      value.set(Eval());
+      value.set(Eval(AI));
     else if (!CanMove(AI) && !CanMove(MAN))
-      value.set(Eval());
+      value.set(Eval(AI));
     else if (IsWin(AI))
-      value.set(Eval());
+      value.set(Eval(AI));
     else if (IsWin(MAN))
-      value.set(Eval());
+      value.set(Eval(AI));
     else {
       value.set(Integer.MIN_VALUE);
       for (int i = 0; i < 3; ++i) {
@@ -249,13 +377,13 @@ public class Board {
     AtomicInteger noCare = new AtomicInteger(0);
 
     if (deep == 0)
-      value.set(Eval());
+      value.set(Eval(MAN));
     else if (!CanMove(AI) && !CanMove(MAN))
-      value.set(Eval());
+      value.set(Eval(MAN));
     else if (IsWin(MAN))
-      value.set(Eval());
+      value.set(Eval(MAN));
     else if (IsWin(AI))
-      value.set(Eval());
+      value.set(Eval(MAN));
     else {
       value.set(Integer.MAX_VALUE);
       for (int i = 0; i < 3; ++i) {
