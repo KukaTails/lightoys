@@ -30,3 +30,4 @@
 ; testing
 
 (sqrt-def 4.0)
+(sqrt-def 9.0)
