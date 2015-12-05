@@ -22,8 +22,7 @@
   (display ")"))
 
 ; rectangle
-(define (make-rectangle l-point r-point)
-  (if (=
+(define (make-rectangle l-point r-point)S
   (cons l-point r-point))
 
 (define (l-point rectangle)
