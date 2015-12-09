@@ -1,3 +1,6 @@
 package application.domain;
 
-public class Customer {}
+public class Customer {
+  String name;
+  String phoneNumber;
+}

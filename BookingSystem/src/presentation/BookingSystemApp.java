@@ -1,7 +1,10 @@
 package presentation;
 
-import java.awt.Frame;
+import javax.swing.JFrame;
 
-public class BookingSystemApp extends Frame {
-
+public class BookingSystemApp extends JFrame {
+  public BookingSystemApp() {
+    add(new StaffUI());
+    setSize(600, 400);
+  }
 }

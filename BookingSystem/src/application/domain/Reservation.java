@@ -1,8 +1,5 @@
 package application.domain;
 
-import application.domain.Booking;
-import application.domain.Customer;
-
 import application.util.Time;
 import com.sun.istack.internal.NotNull;
 
