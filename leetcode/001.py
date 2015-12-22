@@ -25,6 +25,3 @@ class Solution(object):
         for x in result:
             ans.append(dict[x] + 1)
         return ans
-
-nums = [0, 4, 3, 0]
-print(Solution().twoSum(nums, 0))

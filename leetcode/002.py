@@ -17,7 +17,6 @@ def getValue(list):
     else:
         return list.val
 
-
 def createListNode(value):
     if value // 10 == 0:
         return ListNode(value)
