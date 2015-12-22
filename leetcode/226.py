@@ -18,7 +18,3 @@ class Solution(object):
         if root.right is not None:
             self.invertTree(root.right)
         root.left, root.right = root.right, root.left
-
-tree = TreeNode(1)
-Solution().invertTree(tree)
-print(tree.val)
