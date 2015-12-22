@@ -10,4 +10,3 @@ class Solution(object):
             sum = sum + val if sum >= 0 else val
             max_sum = sum if sum > max_sum else max_sum
         return max_sum
-
