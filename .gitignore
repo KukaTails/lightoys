@@ -5,6 +5,7 @@
 *.name
 *.xml
 *.iml
+*.ini
 
 #################
 ## Eclipse
