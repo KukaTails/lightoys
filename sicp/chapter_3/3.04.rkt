@@ -2,17 +2,14 @@
   (define wrong-password-count 0)
   (define wrong-password-limit 7)
   (define (call-the-cops) "Call the cops")
-  
   (define (withdraw amount)
     (if (>= balance amount)
         (begin (set! balance (- balance amount))
                balance)
-        "Not enough money"))
-  
+        "Insufficient funds"))
   (define (deposit amount)
     (set! balance (+ balance amount))
     balance)
-  
   (define (dispatch pass op)
     (if (not (eq? pass password))
         (lambda (amount)
