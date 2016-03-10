@@ -19,7 +19,7 @@ class Solution(object):
             elif prices[i] - mins[i - 1] > profit_pre[i - 1]:
                 profit_pre[i] = prices[i] - mins[i - 1]
             else:
-                profit_pre[i] == profit_pre[i - 1]
+                profit_pre[i] = profit_pre[i - 1]
 
         for i in range(numbers - 1, -1, -1):
             if i == numbers - 1 or prices[i] > maxs[i + 1]:
