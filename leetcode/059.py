@@ -46,5 +46,3 @@ class Solution(object):
         matrix[self.i - 1][self.j] = self.k
         self.k += 1; self.i -= 1
         return True
-
-print(Solution().generateMatrix(5))
