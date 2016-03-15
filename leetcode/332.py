@@ -8,7 +8,6 @@ class Solution(object):
         import sys
         len_coins = len(coins)
         dp = [sys.maxint] * (amount + 1)
-
         for i in range(amount + 1):
             min_coins = dp[i]
             for j in range(len_coins):
