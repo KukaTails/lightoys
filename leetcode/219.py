@@ -7,14 +7,8 @@ class Solution(object):
         """
         hash_table = {}
         for i, x in enumerate(nums):
-            if x not in hash_table.keys():
-                hash_table[x] = [i]
-            else:
-                seq = hash_table[x]
-                top_elem = seq.pop()
-                seq.append(top_elem)
-                if i - top_elem <= k:
+            if hash_table.has_key(x):
+                if i - hash_table[x] <= k:
                     return True
-                else:
-                    seq.append(i)
+            hash_table[x] = i
         return False
