@@ -5,25 +5,19 @@ class Solution(object):
         :type p: str
         :rtype: bool
         """
-        len_s = len(s)
-        len_p = len(p)
-        s += "#"
-        p += "#"
-        states = set()
-        states.add(StateNode(0, 0))
+        len_s, len_p = len(s), len(p)
+        s, p = s + "#", p + "#"
+        states = set([StateNode(0, 0)])
         while states:
             new_states = set()
             for state in states:
-                s_index = state.s_index
-                p_index = state.p_index
+                s_index, p_index = state.s_index, state.p_index
                 if s_index == len_s and p_index == len_p:
                     return True
                 if s_index == len_s or p_index == len_p:
                     if s_index == len_s and p[p_index + 1] == '*':
                         new_states.add(StateNode(s_index, p_index + 2))
-                        continue
-                    else:
-                        continue
+                    continue
                 if p[p_index + 1] != '*':
                     if p[p_index] != '.':
                         if p[p_index] == s[s_index]:
