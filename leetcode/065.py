@@ -106,9 +106,7 @@ test_cases = [
     "3",
     " 3 ",
     "+1",
-    " + 1 ",
     "-2",
-    " - 2 ",
     "020",
     "00020",
     "-1.1",
@@ -129,10 +127,12 @@ test_cases = [
 
     # False
     "0x4",
-    "1.0f"
+    "1.0f",
     " . ",
     " + .8",
+    " + 1 ",
+    " - 2 "
 ]
 
 for test_case in test_cases:
-    print Solution().isNumber(test_case)
+    Solution().isNumber(test_case)
