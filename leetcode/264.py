@@ -4,17 +4,13 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        import heapq
-        heap, ans, count, poped = [], [], 1, 0
-        heapq.heappush(heap, 1)
-        while count <= n:
-            x = heapq.heappop(heap)
-            poped += 1
-            ans.append(x)
-            for i in (2, 3, 5):
-                heapq.heappush(heap, i * x)
-            count += 3
-        while heap and poped < n:
-            heapq.heappop(heap)
-            poped += 1
-        return heap[0]
+        nums, ugly_index = [1] * n, 1
+        index_2 = index_3 = index_5 = 0
+        while ugly_index < n:
+            min_val = min([nums[index_2]*2, nums[index_3]*3, nums[index_5]*5])
+            nums[ugly_index] = min_val
+            while nums[index_2] * 2 <= min_val: index_2 += 1
+            while nums[index_3] * 3 <= min_val: index_3 += 1
+            while nums[index_5] * 5 <= min_val: index_5 += 1
+            ugly_index += 1
+        return nums[n-1]
