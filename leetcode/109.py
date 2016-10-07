@@ -17,22 +17,25 @@ class Solution(object):
         :type head: ListNode
         :rtype: TreeNode
         """
-        self.head = head
-        self.head_index = 0
-        self.len = 0
+        values = self.convert_to_array(head)
+        return self.build_tree(values)
+
+
+    def convert_to_array(self, head):
+        array = []
         while head:
-            self.len += 1
+            array.append(head.val)
             head = head.next
+        return array
 
 
+    def build_tree(self, values):
+        if len(values) == 0: return None
 
-    def helper(self, start, end):
-        if self.head_index > end:
-            return None
-        mid = (start + end) // 2
-        left = self.helper(start, mid-1)
-        node = TreeNode(self.head[self.head_index])
-        self.head_index += 1
-        right = self.helper(mid+1, end)
-        node.left, node.right = left, right
-        return node
+        low, high = 0, len(values)-1
+        mid = low + (high-low) // 2
+        root = TreeNode(values[mid])
+        left = self.build_tree(values[:max(0,mid-1)])
+        right = self.build_tree(values[min(high+1,mid+1):])
+        root.left, root.right = left, right
+        return root
